@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .row {
+            margin: 5px;
+        }
+
+        body {
+            background-color: rgb(192, 192, 192);
+        }
+    </style>
+
+    <script>
+        function uploadImage() {
+            // var output = document.getElementById('output');
+            // output.src = URL.createObjectURL(event.target.files[0]);
+
+            var files = $('#img_File')[0].files[0];
+            $("#img1").src = URL.createObjectURL(files)
+
+            var fd = new FormData();
+            fd.append('img_File', files);
+            // $("#img1").append($('#img_File')[0])
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/",
+                type: "POST",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    $("#div1").append(result)
+                }
+            });
+        }
+
+        var loadFile = function (event) {
+            $('#div1').empty();
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-4" style="margin-top: 50px;">
+                <div class="card text-left">
+                    <div class="card-body">
+                        <h4 class="card-title">Face Classifier</h4>
+                        <div class="card-text">
+                            <div>
+                                <form method="post" s enctype="multipart/form-data" id="myform">
+                                    <div class="form-group">
+                                        <div>
+                                            <img id="output" width="150px" height="150px" />
+                                        </div>
+                                        <div style="margin-top: 5px;">
+                                            <input type="file" class="form-control-file" name="img_File" id="img_File"
+                                                onchange="loadFile(event)" placeholder="Image"
+                                                aria-describedby="fileHelpId">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="uploadImage(event)">Upload</button>
+                                </form>
+                            </div>
+                            <div id='div1'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
