@@ -6,8 +6,9 @@ Run face_recogination.py file to TRAIN or CLASSIFY
 
 # Training
 	ex - python face_recogination.py TRAIN --data_dir "path to the data dir where you have saved all the photos"
-	Data Directory should be in the following format
-	![alt text](https://github.com/chetan12sharma/face-recogination/blob/master/images/img2.png)
+Data Directory should be in the following format
+![alt text](https://github.com/chetan12sharma/face-recogination/blob/master/images/img2.png)
+
 # Classify
 	ex - python face_recogination.py CLASSIFY --data_dir "path of the image which you want to classify"
 
