@@ -19,7 +19,7 @@ factor = 0.709
 margin = 44
 input_image_size = 160
 
-sess = tf.Session()
+sess = tf.compat.v1.Session()
 
 # read pnet, rnet, onet models from align directory and files are det1.npy,
 # det2.npy, det3.npy
@@ -30,9 +30,10 @@ pnet, rnet, onet = detect_face.create_mtcnn(sess, "align")
 facenet.load_model("20170512-110547/20170512-110547.pb")
 
 # Get input and output tensors
-images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
-embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
-phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
+images_placeholder = tf.compat.v1.get_default_graph().get_tensor_by_name("input:0")
+embeddings = tf.compat.v1.get_default_graph().get_tensor_by_name("embeddings:0")
+phase_train_placeholder = tf.compat.v1.get_default_graph(
+).get_tensor_by_name("phase_train:0")
 embedding_size = embeddings.get_shape()[1]
 
 

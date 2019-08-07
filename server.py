@@ -14,18 +14,14 @@ CORS(app)
 
 @app.route('/', methods=['POST'])
 def home():
+    # Reading image stream
     img = request.files['img_File'].stream
-
     pil_image = Image.open(img).convert('RGB')
-
-    # pil_image.show()
-
+    # converting the pil_image into an array
     open_cv_image = np.array(pil_image)
+    # converting the RGB TO BGR for opencv
     open_cv_image = open_cv_image[:, :, ::-1].copy()
     name = classify(open_cv_image)
-    # cv2.imshow("faces", open_cv_image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
     return "<h3>"+name+"</h3>"
 
 
