@@ -2,3 +2,7 @@
 /data
 /test
 /geckodriver.log
+/temp.py
+/face_detect_demo.py
+/face_embeddings_demo.py
+/face_match_demo.py

@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 import cv2
 from PIL import Image
 import numpy as np
-from main_file import classify
+from face_recogination import classify
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
